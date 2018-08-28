@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>My Portfolio</title>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6OV9-F9yyfLJvr8WxaB3h1S80bjIzRqw&callback=initMap" async defer></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><!--웹에서 아이콘 다운로드  -->
+<style type="text/css">
+@import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
+	body, ul { margin: 0; padding: 0; }
+	* { font-family: 'Jeju Gothic', serif; }
+	ul { list-style-type: none; }
+	a { text-decoration: none; }
+	
+	nav {
+		width: 300px;
+		font-weight: bold;
+		color: #757575;
+		text-align: center;
+		position: fixed;
+		height: 100%;
+		top: 0px;
+		box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2),
+					0 4px 20px 0 rgba(0,0,0,0.19);
+	}
+	#close_btn{
+		background-color: black;
+		width:20px;
+		height: 70px;
+		padding: 24px 0;
+		box-sizing: border-box;
+		position: absolute;
+		right: -20px;
+		top:400px;
+	}
+	#close_btn > i{
+		color: white;
+		font-size: 12px;
+	}
+	h3 {
+		font-size: 40px;
+		padding: 100px 0;
+		margin: 10px 0;
+		font-weight: 400;
+	}
+	
+	.nav_a {
+		display: block;
+		width: 100%;
+		padding: 12px 16px;
+		font-size: 20px;
+		color: #757575;
+		box-sizing: border-box;
+	}
+	.nav_a:hover {
+		color: black;
+		background-color: #ccc;
+	}
+	
+	
+	/* About ME */
+	#content {
+		padding-left: 300px;
+		transition:0.3s;
+	}
+	#aboutme {
+		background-color: #616161;
+		color: #f1f1f1;
+		padding: 32px 0 52px;/* 상 좌우 하 */
+		text-align: center;
+		box-sizing: border-box;
+	}
+	#aboutme > img {
+		width: 25%;
+		height: 25%;
+		display: inline-block;
+		margin: 32px 0;
+		max-width: 30%;
+		border-radius: 25px;
+		box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2),
+					0 4px 20px 0 rgba(0,0,0,0.19);
+	}
+	#job {
+		background-color: #f1f1f1;
+		color: black;
+		width: 25%;
+		margin: auto;
+		padding: 7px 0;
+		border-radius: 25px;
+		box-sizing: border-box;
+		box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2),
+					0 4px 20px 0 rgba(0,0,0,0.19);
+	}
+	#job > b{
+		font-size: 20px;
+	}
+	#web { color: #FE4E50;}
+	#big { color: #2B4682;}
+	
+	
+	
+	h2 {
+		text-align: center;
+	}
+	
+	#intro_table{
+		margin: 50px auto;
+		border-collapse: collapse;
+	}
+	#intro_table td{
+		width: 220px;
+		height: 120px;
+		text-align: center;
+		color: #f1f1f1;
+	}
+	#intro_table i{
+	font-size: 36px;
+	}
+	.deepgray{background-color: #616161;}
+	.deepgreen{background-color: #009688;}
+	.softgray{background-color: #9e9e9e;}
+	
+	#profile_wrap {
+		background-color: #f1f1f1;	
+		padding: 32px 0;	
+	}
+	#profile {
+		width: 25%;
+		margin: auto;
+		text-align: left;
+	}
+	#profile > span {
+		display: block;
+		padding: 5px 0 5px 25px;
+		color: #757575;
+	}
+	#snslink {
+		width: 207px;
+		height: 42px;
+		padding: 100px 0;
+		margin: auto;
+	}
+	#snslink > ul > li {
+		float: left;
+		padding: 0 10px;
+		font-size: 36px;
+	}
+	#snslink > ul > li > a {
+		color: #757575;
+	}
+	#snslink > ul > li >a:hover {
+		color: black;
+	}
+	
+	
+	#map_view {
+		margin: 20px auto;
+	}
+	
+	
+	#skills {
+		background-color: #616161;
+		padding: 53px 0; 
+	}
+	.whitebar {
+		width: 40%;
+		background-color: white;
+		margin: auto;
+		border-radius: 25px;
+		box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2),
+					0 4px 20px 0 rgba(0,0,0,0.19);
+	}
+	.graybar {
+		background-color: #009688;
+		height: 39px;
+		border-radius: 25px;
+		text-align: center;
+		line-height: 37px;
+	}
+	#skills > p {
+		display: block;
+		width: 40%;
+		margin: 16px auto;
+		padding-left: 25px;
+		color: white;
+	}
+	#skills > h2 {
+		color: white;
+	}
+	
+	
+	/* Contact Me */
+	#contact {
+		background-color: #f1f1f1;
+		padding: 32px 0;
+	}
+	#contact > p {
+		width: 40%;
+		display: block;
+		margin: auto;
+	}
+	.coninfo {
+		margin: 16px auto;
+		color: black;
+		width: 40%;
+	}
+	.coninfo > label {
+		font-size: 15px;
+	}
+	.coninfo > input {
+		border: 1px solid #ccc;
+		width: 100%;
+		padding: 8px;
+		height: 40px;
+		margin-top: 3px;
+		box-sizing: border-box;
+	}
+	#contact > button {
+		width: 40%;
+		margin: 16px auto;
+		background-color: black;
+		color: white;
+		border: 0;
+		padding: 8px;
+		height: 40px;
+		display: block;
+	}
+</style>
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+	function initialize() {
+	/* http://openapi.map.naver.com/api/geocode.php?key=AIzaSyBycKZYweoTna9GEVe1TcxwEil9KSACRXU&encoding=euc-kr
+			&coord=LatLng&query=서울특별시 강남구 강남대로 456
+       위의 링크에서 뒤에 주소를 적으면 x,y 값을 구할수 있습니다. */
+            var Y_point = 35.15997;     // Y 좌표
+            var X_point = 126.910121;   // X 좌표
+
+            var zoomLevel = 17;         // 지도의 확대 레벨 : 숫자가 클수록 확대정도가 큼
+			
+         	// 현재 위치 마커에 마우스를 오버을때 나타나는 정보
+            var markerTitle = "SIRESOURCES Co.,Ltd."; 
+            var markerMaxWidth = 300; // 마커를 클릭했을때 나타나는 말풍선의 최대 크기
+
+            // 말풍선 내용
+            var contentString    = '<div>' +
+                                   '<h2>(주)한국경영원 인재개발원</h2>'+
+                                   '<p>SIRESOURCES Co.,Ltd.<br/>' +
+                                   'has become a resource development company.</p>' +
+            //'<a href="http://www.daegu.go.kr" target="_blank">http://www.daegu.go.kr</a>'+ //링크도 넣을 수 있음
+                                   '</div>';
+
+            var myLatlng = new google.maps.LatLng(Y_point, X_point);
+            var mapOptions = {
+	            zoom: zoomLevel,
+	            center: myLatlng,
+	            mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+            var map = new google.maps.Map(document.getElementById('map_view'), 
+            		  mapOptions);
+
+            var marker = new google.maps.Marker({
+            	position: myLatlng,
+            	map: map,
+            	title: markerTitle
+            });
+			
+            var infowindow = new google.maps.InfoWindow(
+	           {
+	                   content: contentString,
+	                   maxWidth: markerMaxWidth
+	           }
+            );
+
+            google.maps.event.addListener(marker, 'click', function() {
+                    infowindow.open(map, marker);
+            });
+            
+      /*JQuery  */
+      /* web standard:HTML,CSS,JS =>바로 개발 가능(코드 추가 x)*/
+      /* jQuery =>JS프레임 워크 ,코드를 추가해야함       
+                   추가 방법 :
+         1.local 방식:프로젝트에 추가
+         	장점:쓰고 싶은 버전을 사용하기 때문에 소스코드가 깨질일이 없음
+         	단점:수동으로 최신버전을 업그레이드해야함
+         2.CDN 방식:웹폰트 쓰듯이 웹서버 실행할때마다 서버에서 다운
+         	장점:자동으로 최신버전을 업그레이드
+     		단점:최신버전으로 버전업이 됐을 때 소스코드가 깨진다
+         */
+       	$(document).ready(function() {/* 페이지가 뜨면은 실행한다는 의미 */
+       		var state= false;
+       		$("#arrowRight").css("display","none");
+			$("#close_btn").on("click", function() {/*call back함수 ex)#close_btn에 국한된 function  */
+				if(!state){/*true일때는  */
+				$("#nav").animate({left:'-300px'}, 300);
+				$("#arrowLeft").css("display","none");
+				$("#arrowRight").css("display","inline-block");
+				$("#content").css("padding-left","0px");
+				}else{
+				$("#nav").animate({left:'0'}, 300);
+				$("#arrowRight").css("display","none");
+				$("#arrowLeft").css("display","inline-block");
+				$("#content").css("padding-left","300px")
+				}
+				state = !state;	
+			});
+		});
+    }
+</script>
+</head>
+<body onload="initialize()">
+	<nav id="nav">
+		<div id="close_btn">
+		<i class="fa fa-chevron-left" id="arrowLeft"></i>
+		<i class="fa fa-chevron-right" id="arrowRight"></i>
+		</div>
+		<h3>
+			<b>
+				Mr. KIM<br>
+				Programmer
+			</b>
+		</h3>
+		<a class="nav_a" href="#aboutme">ABOUT ME</a>
+		<a class="nav_a" href="#profile">PROFILE & MAP</a>
+		<a class="nav_a" href="#skills">TECHNICAL SKILLS</a>
+		<a class="nav_a" href="#contact">CONTACT</a>
+		
+		<div id="snslink">
+			<ul>
+				<li><a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook-official"></i></a></li>
+				<li><a href="https://www.instagram.com/?hl=ko" target="_blank"><i class="fa fa-instagram"></i></a></li>
+				<li><a href="https://twitter.com/?lang=ko" target="_blank"><i class="fa fa-twitter"></i></a></li>
+				<li><a href="https://kr.linkedin.com/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+			</ul>
+		</div>
+	</nav>
+	<section>
+		<div id="content">
+			<div id="aboutme">
+				<h2><b>About Me</b></h2>
+				<img src="img/IMG_0209.JPG" alt="Me">
+				<div id="job">
+				<b>SUNGMINKIMM</b><br>
+				(<span id="web">Web</span> <span id="big">Bigdata</span> Developer)
+				</div>
+			</div>
+			
+			
+			<div id="profile_wrap">
+				<div id="profile">
+					<h2><b>Profile</b></h2>
+					<!-- <span><i class="fa fa-user"></i>Name: SUNGMIN KIM</span>
+					<span><i class="fa fa-mortar-board"></i>Degree: International Trade And Commerce </span>
+					<span><i class="fa fa-black-tie"></i>Major: Bigdata, Machinelearning</span>
+					<span><i class="fa fa-map-marker"></i>Location: Korea, Gwang-Ju</span>
+					<span><i class="fa fa-envelope"></i>Email: coolldd@naver.com</span> -->
+				</div>
+				
+				<table id="intro_table"><!-- 2행 3열 -->
+					<tr><!-- 가로 :행 -->
+						<td class="deepgray">
+						<p><i class="fa fa-envelope"></i><p><!-- i tag는 inline 속성이 있어서 바로 옆에 붙음 그래서 p태그로 한칸 내려줌 -->
+						coolldd890@gmail.com
+						</td><!--새로  -->
+						<td class="deepgreen">
+						<p><i class="fa fa-map-marker"></i></p>
+						GwangJU. Korea
+						</td>
+						<td class="deepgray">
+						<p><i class="fa fa-phone"></i></p>
+						010-2370-8049
+						</td>
+					</tr>	
+					
+					<tr>
+						<td class="deepgreen">
+						<p><i class="fa fa-mortar-board"></i></p>
+						Bachelor of Economic
+						</td>
+						<td class="deepgray">
+						<p><i class="fa fa-black-tie"></i></p>
+						BigData, Hadoop , JAVA
+						</td>
+						<td class="softgray">
+						<p><i class="fa fa-download"></i></p>
+						Resume Download</td>
+					</tr>
+				
+				</table>
+				<div id="map_view" style="width:100%; height:350px;"></div>
+			</div>
+			
+			<div id="skills">
+				<h2><b>Technical Skills</b></h2>
+				<p>Programming(JAVA)</p>
+				<div class="whitebar">
+					<div class="graybar" style="width: 70%;">70%</div>
+				</div>
+				<p>Web Design(HTML,CSS,JQuery)</p>
+				<div class="whitebar">
+					<div class="graybar" style="width: 60%;">60%</div>
+				</div>
+				<p>Web Develop()</p>
+				<div class="whitebar">
+					<div class="graybar" style="width: 80%;">80%</div>
+				</div>
+				<p>Database(ORACLE,MYSQL,MONGDB)</p>
+				<div class="whitebar">
+					<div class="graybar" style="width: 70;">70%</div>
+				</div>
+				<p>Linux Server(CentOS)</p>
+				<div class="whitebar">
+					<div class="graybar" style="width: 70%;">70%</div>
+				</div>				
+				<p>BigData(Flume,Hadoop,Hive,WebCrawaling)</p> 
+				<div class="whitebar">
+					<div class="graybar" style="width: 80%;">80%</div>
+				</div>				
+			</div>
+			
+			<div id="contact">
+				<h2><b>Contact Me</b></h2>
+				<p>
+					Do you want my programming skills? Fill out the form and
+					fill me in with the details :) I love meeting new people!
+				</p>
+				
+				<form action="" method="POST">
+					<div class="coninfo">
+						<label>Name</label>
+						<input type="text" name="Name" required>
+					</div>
+					<div class="coninfo">
+						<label>Email</label>
+						<input type="text" name="Email" required>
+					</div>
+					<div class="coninfo">
+						<label>Message</label>
+						<input type="text" name="Message" required>
+					</div>
+				</form>
+				
+				<button id="submit_btn">
+				<i class="fa fa-rocekt"></i>
+				Send Message:)</button>
+			</div>
+		</div>
+	</section>
+	
+</body>
+</html>

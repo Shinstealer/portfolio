@@ -26,6 +26,12 @@ public class PortfolioDAO {
 			
 			int result = pstmt.executeUpdate();
 			
+			if(result > 0 ) {
+				System.out.println("등록 성공");
+			}else {
+				System.out.println("등록 실패");
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
